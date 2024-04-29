@@ -1,0 +1,18 @@
+/*
+* Header
+ - logo
+ - Nav Items
+
+* Body
+ - Search
+ - RestaurentContainer
+    - RestaurentCard
+        - image
+        - Name of the restaurent, Star Rating, cuisine, DeliveryTime, 
+
+* Footer
+ - Copyright
+ - Links
+ - Address
+ - Contact
+*/
