@@ -9,12 +9,12 @@ const Header = ()=>{
     // if do no Dependency array => useEffect is called every time when the component is rendered.
     // if Dependency array is empty[] => useEffect is called only once when the component is mounted.
     // if Dependency array is [BtnName] => Called everytime BtnName is updated.
-    useEffect(()=>{
-        console.log("Header Component Mounted");
-    }, [BtnName]);
+    // useEffect(()=>{
+    //     console.log("Header Component Mounted");
+    // }, [BtnName]);
 
     btnChange = ()=>{
-        console.log("Button Clicked");
+        // console.log("Button Clicked");
         return BtnName === "Login"? setBtnName("Logout") : setBtnName ("Login");    
     }
 
@@ -22,14 +22,14 @@ const Header = ()=>{
         <div className="header">
 
             <div className="logo-container">
-                <img className="logo" src={LOGO_URL} alt="" />
+                <Link to="/"><img className="logo" src={LOGO_URL} alt="" /> </Link>
             </div>
 
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
+                    <li> <Link to="/"> Home </Link> </li>
+                    <li> <Link to="/about"> About Us </Link> </li>
+                    <li> <Link to="/contact"> Contact Us </Link> </li>
                     <li>Cart</li>
 
                     <button 

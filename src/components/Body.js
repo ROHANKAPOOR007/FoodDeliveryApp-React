@@ -1,7 +1,8 @@
 import RestCard from "./RestCard";
-import resList from "../utils/ResList";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = ()=>{
 
@@ -21,10 +22,10 @@ const Body = ()=>{
 
 
     const fetchData = async ()=>{
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.70398149999999&lng=77.4329048&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7010542&lng=77.4305723&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
         const jsonData = await data.json();
-        console.log(jsonData);
+        // console.log(jsonData);
 
         setListOfRestaurants(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
@@ -44,12 +45,18 @@ const Body = ()=>{
     // Search for the restaurants and update the UI
     function searchRestaurants(){
         // console.log("Searching...")
-        console.log(searchText);
+        // console.log(searchText);
         const searchedRestaurant = listOfRestaurants.filter((restaurants)=>{
             return restaurants.info.name.toLowerCase().includes(searchText.toLowerCase()) 
         });
 
         setFilteredRestaurant(searchedRestaurant);
+    }
+
+
+    const onlineStatus = useOnlineStatus();
+    if(onlineStatus === false) {
+        return <h1>Looks like you're Offline!! Please Check your Internet Connection.</h1>
     }
 
     // This is conditional Rendering.
@@ -73,7 +80,14 @@ const Body = ()=>{
             <div className="rest-container">
                 {   //not using index as keys. it is less recommanded <<<<<<<unique.id
                     filteredRestaurant.map((restaurant)=>{
-                        return <RestCard resData = {restaurant} key={restaurant.info.id}/>
+                        const key = restaurant.info.id; // This is your 'key' value
+                        // console.log('Key:', key); // Log the key to the console
+                        return <Link 
+                            key={restaurant.info.id} 
+                            to={"/restaurants/"+restaurant.info.id} >
+                            <RestCard resData = {restaurant} /> 
+        
+                        </Link>
                     })
                 }
                 
