@@ -8,8 +8,6 @@ import Error from "./components/Error.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 
 
-
-
 // the Header component is inside AppLayout Component it is known as Component composition
 
 const AppLayout = ()=>{
