@@ -107,7 +107,7 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "build": "npx parcel build index.html && cp -r static dist",
     "test": "jest"
   },
   "keywords": [
