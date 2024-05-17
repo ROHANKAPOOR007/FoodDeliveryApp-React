@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = ()=>{
 
     const [BtnName, setBtnName] = useState("Login");
+
     
     // if do no Dependency array => useEffect is called every time when the component is rendered.
     // if Dependency array is empty[] => useEffect is called only once when the component is mounted.
@@ -12,6 +14,9 @@ const Header = ()=>{
     // useEffect(()=>{
     //     console.log("Header Component Mounted");
     // }, [BtnName]);
+
+
+    const onlineStatus = useOnlineStatus();
 
     btnChange = ()=>{
         // console.log("Button Clicked");
@@ -27,9 +32,11 @@ const Header = ()=>{
 
             <div className="nav-items">
                 <ul>
+                    <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
                     <li> <Link to="/"> Home </Link> </li>
                     <li> <Link to="/about"> About Us </Link> </li>
                     <li> <Link to="/contact"> Contact Us </Link> </li>
+                    <li> <Link to="/grocery"> Grocery </Link> </li>
                     <li>Cart</li>
 
                     <button 

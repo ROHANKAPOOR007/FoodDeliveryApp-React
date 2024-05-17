@@ -54,6 +54,7 @@ const Body = ()=>{
     }
 
 
+    // this will check if the Internet is available or not
     const onlineStatus = useOnlineStatus();
     if(onlineStatus === false) {
         return <h1>Looks like you're Offline!! Please Check your Internet Connection.</h1>
