@@ -1,4 +1,4 @@
-import RestCard from "./RestCard";
+import RestCard, {WithPromotedLabel} from "./RestCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -15,7 +15,9 @@ const Body = ()=>{
 
     // Whenever state variable update, react triggers a reconciliation cycle(re-render the component)
 
+    const RestaurantCardPromoted = WithPromotedLabel(RestCard);
 
+    console.log(listOfRestaurants)
     
     useEffect(()=>{
         fetchData();
@@ -93,7 +95,11 @@ const Body = ()=>{
                         return <Link 
                             key={restaurant.info.id} 
                             to={"/restaurants/"+restaurant.info.id} >
-                            <RestCard resData = {restaurant} /> 
+
+                            {/* if the restaurant is promoted then add a promoted label on it */
+                                restaurant.info.avgRating >=4.3 ? <RestaurantCardPromoted  resData = {restaurant}/> : <RestCard resData = {restaurant} /> 
+                            }
+                            {/* <RestCard resData = {restaurant} />  */}
         
                         </Link>
                     })

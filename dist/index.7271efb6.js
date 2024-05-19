@@ -34436,6 +34436,8 @@ const Body = ()=>{
     const [searchText, setSearchText] = (0, _react.useState)("");
     const [filteredRestaurant, setFilteredRestaurant] = (0, _react.useState)([]);
     // Whenever state variable update, react triggers a reconciliation cycle(re-render the component)
+    const RestaurantCardPromoted = (0, _restCard.WithPromotedLabel)((0, _restCardDefault.default));
+    console.log(listOfRestaurants);
     (0, _react.useEffect)(()=>{
         fetchData();
     }, []);
@@ -34468,14 +34470,14 @@ const Body = ()=>{
         children: "Looks like you're Offline!! Please Check your Internet Connection."
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 61,
+        lineNumber: 63,
         columnNumber: 16
     }, undefined);
     // This is conditional Rendering.
     // if listOfRestaurants.length===0 then show Shimmer otherwise show Rest
     return listOfRestaurants.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 66,
+        lineNumber: 68,
         columnNumber: 43
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "body",
@@ -34495,7 +34497,7 @@ const Body = ()=>{
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 72,
+                                lineNumber: 74,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -34504,13 +34506,13 @@ const Body = ()=>{
                                 children: " Search "
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 73,
+                                lineNumber: 75,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 71,
+                        lineNumber: 73,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34521,18 +34523,18 @@ const Body = ()=>{
                             children: "Top Rated Restaurants"
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 77,
+                            lineNumber: 79,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 76,
+                        lineNumber: 78,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 69,
+                lineNumber: 71,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34542,28 +34544,34 @@ const Body = ()=>{
                     // console.log('Key:', key); // Log the key to the console
                     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                         to: "/restaurants/" + restaurant.info.id,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restCardDefault.default), {
+                        children: restaurant.info.avgRating >= 4.3 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(RestaurantCardPromoted, {
                             resData: restaurant
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 96,
-                            columnNumber: 29
+                            lineNumber: 100,
+                            columnNumber: 67
+                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restCardDefault.default), {
+                            resData: restaurant
+                        }, void 0, false, {
+                            fileName: "src/components/Body.js",
+                            lineNumber: 100,
+                            columnNumber: 119
                         }, undefined)
                     }, restaurant.info.id, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 93,
+                        lineNumber: 95,
                         columnNumber: 32
                     }, undefined);
                 })
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 88,
+                lineNumber: 90,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 67,
+        lineNumber: 69,
         columnNumber: 9
     }, undefined);
 };
@@ -34591,6 +34599,7 @@ $parcel$ReactRefreshHelpers$a297.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "WithPromotedLabel", ()=>WithPromotedLabel);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _constants = require("../utils/constants");
 const RestCard = (props)=>{
@@ -34657,9 +34666,38 @@ const RestCard = (props)=>{
     }, undefined);
 };
 _c = RestCard;
+const WithPromotedLabel = (RestCard)=>{
+    return (props)=>{
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                    className: "absolute bg-black text-white p-1 m-2 rounded-lg",
+                    children: "Promoted"
+                }, void 0, false, {
+                    fileName: "src/components/RestCard.js",
+                    lineNumber: 30,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(RestCard, {
+                    ...props
+                }, void 0, false, {
+                    fileName: "src/components/RestCard.js",
+                    lineNumber: 31,
+                    columnNumber: 17
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/RestCard.js",
+            lineNumber: 29,
+            columnNumber: 13
+        }, undefined);
+    };
+};
+_c1 = WithPromotedLabel;
 exports.default = RestCard;
-var _c;
+var _c, _c1;
 $RefreshReg$(_c, "RestCard");
+$RefreshReg$(_c1, "WithPromotedLabel");
 
   $parcel$ReactRefreshHelpers$a297.postlude(module);
 } finally {

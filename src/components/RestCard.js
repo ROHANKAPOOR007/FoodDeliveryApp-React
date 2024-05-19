@@ -16,6 +16,23 @@ const RestCard = (props)=>{
 
         </div>
     )
+};
+
+
+// Higher Order Component
+
+// input - RestCard => RestCardPromoted 
+
+export const WithPromotedLabel = (RestCard)=>{
+    return (props)=>{
+        return(
+            <div>
+                <label className="absolute bg-black text-white p-1 m-2 rounded-lg">Promoted</label>
+                <RestCard {...props} />
+            </div>
+        )
+    }
+
 }
 
 
