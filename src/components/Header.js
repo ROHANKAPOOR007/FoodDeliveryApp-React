@@ -24,20 +24,20 @@ const Header = ()=>{
     }
 
     return(
-        <div className="header">
+        <div className="flex justify-between bg-blue-300 shadow-lg m-2">
 
             <div className="logo-container">
-                <Link to="/"><img className="logo" src={LOGO_URL} alt="" /> </Link>
+                <Link to="/"><img className="w-64" src={LOGO_URL} alt="" /> </Link>
             </div>
 
-            <div className="nav-items">
-                <ul>
-                    <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
-                    <li> <Link to="/"> Home </Link> </li>
-                    <li> <Link to="/about"> About Us </Link> </li>
-                    <li> <Link to="/contact"> Contact Us </Link> </li>
-                    <li> <Link to="/grocery"> Grocery </Link> </li>
-                    <li>Cart</li>
+            <div className="flex items-center">
+                <ul className="flex p-5 m-5">
+                    <li className="px-3">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
+                    <li className="px-3"> <Link to="/"> Home </Link> </li>
+                    <li className="px-3"> <Link to="/about"> About Us </Link> </li>
+                    <li className="px-3"> <Link to="/contact"> Contact Us </Link> </li>
+                    <li className="px-3"> <Link to="/grocery"> Grocery </Link> </li>
+                    <li className="px-3">Cart</li>
 
                     <button 
                         className="loginButton" 

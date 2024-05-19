@@ -15,6 +15,7 @@ const Body = ()=>{
 
     // Whenever state variable update, react triggers a reconciliation cycle(re-render the component)
 
+
     
     useEffect(()=>{
         fetchData();
@@ -65,20 +66,26 @@ const Body = ()=>{
     return listOfRestaurants.length===0 ? <Shimmer/> : (
         <div className="body">
 
-            <div className="filter">
-                <div className="search">
-                    <input type="text" className="search-box" value={searchText} onChange={(e)=>{setSearchText(e.target.value)}} />
-                    <button onClick={searchRestaurants} > Search </button>
+            <div className="filter flex">
+
+                <div className="search p-4 m-4">
+                    <input type="text" className="border border-solid border-black" value={searchText} onChange={(e)=>{setSearchText(e.target.value)}} />
+                    <button className="px-4 py-2 m-4 bg-blue-100 rounded-lg" onClick={searchRestaurants} > Search </button>
                 </div>
-                <button 
-                    className="filterButton" 
-                    onClick={filterRestaurants}
-                >
-                    Top Rated Restaurants
-                </button>
+
+                <div className="p-4 m-4 flex item-center">
+                    <button 
+                        className="px-4 py-2 m-4 bg-blue-100 rounded-lg" 
+                        onClick={filterRestaurants}
+                    >
+                        Top Rated Restaurants
+                    </button>
+                </div>
+               
+
             </div>
 
-            <div className="rest-container">
+            <div className="flex flex-wrap">
                 {   //not using index as keys. it is less recommanded <<<<<<<unique.id
                     filteredRestaurant.map((restaurant)=>{
                         const key = restaurant.info.id; // This is your 'key' value

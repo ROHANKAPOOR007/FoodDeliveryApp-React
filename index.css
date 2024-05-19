@@ -1,4 +1,10 @@
-.header{
+
+/* Using tailwind CSS  */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .header{
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
@@ -94,3 +100,5 @@
     padding: 10px;
     border: 1px solid black;
 }
+ */
+
