@@ -1,8 +1,9 @@
 import RestCard, {WithPromotedLabel} from "./RestCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = ()=>{
 
@@ -17,7 +18,7 @@ const Body = ()=>{
 
     const RestaurantCardPromoted = WithPromotedLabel(RestCard);
 
-    console.log(listOfRestaurants)
+    // console.log(listOfRestaurants)
     
     useEffect(()=>{
         fetchData();
@@ -63,29 +64,60 @@ const Body = ()=>{
         return <h1>Looks like you're Offline!! Please Check your Internet Connection.</h1>
     }
 
+
+    const {setUserName , loggedInUser} = useContext(UserContext)
+
     // This is conditional Rendering.
     // if listOfRestaurants.length===0 then show Shimmer otherwise show Rest
     return listOfRestaurants.length===0 ? <Shimmer/> : (
         <div className="body">
 
-            <div className="filter flex">
+            <div className="filter flex items-center">
 
-                <div className="search p-4 m-4">
-                    <input type="text" className="border border-solid border-black" value={searchText} onChange={(e)=>{setSearchText(e.target.value)}} />
-                    <button className="px-4 py-2 m-4 bg-blue-100 rounded-lg" onClick={searchRestaurants} > Search </button>
-                </div>
+                <div className="search p-3 m-3">
 
-                <div className="p-4 m-4 flex item-center">
+                    <input 
+                        type="text" 
+                        className="border border-solid border-black px-2 py-1" 
+                        value={searchText} 
+                        onChange={(e) => setSearchText(e.target.value)} 
+                    />
+
                     <button 
                         className="px-4 py-2 m-4 bg-blue-100 rounded-lg" 
+                        onClick={searchRestaurants}
+                    > 
+                        Search 
+                    </button>
+
+                </div>
+
+                <div className="p-4 m-4">
+
+                    <button 
+                        className="px-4 py-2 bg-blue-100 rounded-lg" 
                         onClick={filterRestaurants}
                     >
                         Top Rated Restaurants
                     </button>
+
                 </div>
-               
+
+                <div className="p-4 m-4">
+
+                    <label htmlFor="">UserName: </label>
+                    <input 
+                        type="text" 
+                        className="border border-solid border-black px-2 py-1"
+                        value={loggedInUser}
+                        onChange={(e)=>{return setUserName(e.target.value)}} 
+                    />
+
+                </div>
 
             </div>
+
+
 
             <div className="flex flex-wrap">
                 {   //not using index as keys. it is less recommanded <<<<<<<unique.id

@@ -24,17 +24,17 @@ class UserClass extends React.Component {
     })
 
 
-    console.log(jsonData);
+    // console.log(jsonData);
   }
 
 
   componentDidUpdate(){
-    console.log("Component Updated");
+    // console.log("Component Updated");
   }
 
 
   componentWillUnmount(){
-    console.log("Component UnMounted");
+    // console.log("Component UnMounted");
   }
 
   render() {

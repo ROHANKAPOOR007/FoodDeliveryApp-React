@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from "react";
+import React, {lazy, Suspense, useEffect, useState} from "react";
 import ReactDOM from "react-dom/client"
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,6 +7,7 @@ import { createBrowserRouter as Router, RouterProvider, Outlet } from "react-rou
 import Error from "./components/Error.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import Contact from "./components/Contact.js";
+import UserContext from "./utils/UserContext.js";
 // import Grocery from "./components/Grocery.js";
 
 
@@ -23,15 +24,34 @@ const Grocery = lazy(()=>{ return import("./components/Grocery.js")});
 const About = lazy(()=>{ return import("./components/About.js")});
 
 
+
 // the Header component is inside AppLayout Component it is known as Component composition
 
 const AppLayout = ()=>{
-    return(
-        <div className="app">
-            <Header />
-            <Outlet />
 
-        </div>
+    
+
+    const [userName, setUserName] = useState();
+    // Authentication
+    useEffect(()=>{
+    // Make an API call and send the username and password.
+        const data = {
+            name: "Rohan Kapoor",
+
+        };
+
+        setUserName(data.name)
+    }, [])
+
+
+    return(
+        <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
+            <div className="app">
+                <Header />
+                <Outlet />
+
+            </div>
+        </UserContext.Provider>
     )
 }
 

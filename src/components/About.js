@@ -1,6 +1,6 @@
-import User from "./User"
 import UserClass from "./UserClass"
 import { Component } from "react"
+import UserContext from "../utils/UserContext";
 
 class About extends Component {
 
@@ -9,13 +9,23 @@ class About extends Component {
     }
 
     componentDidMount(){
-        console.log("About Component Mounted");
+        // console.log("About Component Mounted");
     }
 
     render(){
         return(
             <div className="about">
                 <h1>About Us Class Component</h1>
+                <div>
+                    
+                        loggedIn User
+                        <UserContext.Consumer>
+                            {({loggedInUser})=>{
+                                return <h2 className="text-xl font-bold">{loggedInUser}</h2>
+                            }}
+                        </UserContext.Consumer>
+        
+                </div>
                 <h2>This is Namaste React Webseries</h2>
                 {/* <User name = {"Rohan Kapoor (Function)"} Location={"Ghaziabad"} /> */}
     
