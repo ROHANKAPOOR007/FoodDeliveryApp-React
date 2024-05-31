@@ -1,6 +1,18 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
+
+    const dispatch = useDispatch()
+
+    const handleAddItem = (item)=>{
+        //dispatch an Action
+        dispatch(addItem(item));
+
+       };
+
+    
     return (
         <div>
             {items.map((item) => {
@@ -15,7 +27,27 @@ const ItemList = ({ items }) => {
                         </div>
                         <div className="w-3/12 p-2 relative">
                             <img src={CDN_URL + imageId} alt="" className="w-full" />
-                            <button className="p-2 bg-white text-black shadow-lg absolute bottom-2 left-1/2 transform -translate-x-1/2 rounded-lg">
+                            <button 
+                                className="
+                                p-2
+                             bg-white
+                              text-black
+                               shadow-lg 
+                               absolute 
+                               bottom-2 
+                               left-1/2 
+                               transform -translate-x-1/2 
+                               rounded-lg"
+                               
+                            //    Use onClick={() => handleAddItem(item)} to pass arguments.
+                            //     Avoid onClick={handleAddItem(item)} because it calls the function immediately.
+                            //     Use onClick={handleAddItem} if no arguments are needed.
+                            // onClick={handleAddItem}
+                            // onClick={handleAddItem(item)}
+
+                            onClick={()=>handleAddItem(item)}
+                               
+                            >
                                 Add +
                             </button>
                         </div>

@@ -61,3 +61,14 @@ Two Types of Export/Import
 # 2 Types Routing in web apps
  - Client Side Routing
  - Server Side Routing
+
+
+
+# Redux Toolkit
+ - Install @reduxjs/toolkit and react-redux
+ - Build our store 
+ - Connect our Store to our App
+ - Create a Slice (cartSlice)
+ - Dispatch(Action)
+ - Reducer(function)
+ - Selector
